@@ -25,7 +25,7 @@ async function addNewMember() {
         password: password,
         firstName: firstName,
         lastName: lastName,
-        steet: street,
+        street: street,
         city: city,
         zip: zip
     }
