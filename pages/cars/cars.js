@@ -1,5 +1,5 @@
 import { API_URL } from "../../settings.js"
-import { handleHttpErrors, sanitizeStringWithTableRows } from "../../utils.js"
+import { handleHttpErrors, makeOptions, sanitizeStringWithTableRows } from "../../utils.js"
 
 const URL = API_URL + "/cars"
 
@@ -9,13 +9,17 @@ export async function initCars() {
 }
 
 async function getAllCars() {
+  const options = makeOptions("GET",null,true)
+
     try {
-        const data = await fetch(URL)
+    
+      document.querySelector("#error").innerText = ""
+
+        const data = await fetch(URL, options)
         .then(handleHttpErrors)
         showAllCars(data)
-        console.log("Data: " + data)
     } catch (err) {
-        console.log(err)
+      document.querySelector("#error").innerText = err.message
     }  
 }
 

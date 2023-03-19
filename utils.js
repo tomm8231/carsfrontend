@@ -100,7 +100,7 @@ export function encode(str) {
   return str;
 }
 
-export function makeOptions(method, body) {
+export function makeOptions(method, body, addToken) {
   const opts = {
     method: method,
     headers: {
@@ -108,8 +108,13 @@ export function makeOptions(method, body) {
       "Accept": "application/json"
     }
   }
-  if (body) { //Observe how we can add new fields to an object when needed
+  if (body) {
     opts.body = JSON.stringify(body);
   }
+   if (addToken && localStorage.getItem("token")) {
+    opts.headers.Authorization = "Bearer " + localStorage.getItem("token")
+  }
+
   return opts;
 }
+

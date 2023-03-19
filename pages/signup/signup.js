@@ -33,7 +33,7 @@ async function addNewMember() {
     const options = makeOptions("POST", newMember)
 
     try {
-        await fetch(URL, options).then(handleHttpErrors)
+        await fetch(URL, options).then(res => handleHttpErrors(res))
     } catch (err) {
         console.log(err.message)
     }

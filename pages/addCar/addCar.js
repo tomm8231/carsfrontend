@@ -25,7 +25,8 @@ async function addNewCar() {
     const options = makeOptions("POST", newCar)
 
 try {
-    await fetch(URL, options).then(handleHttpErrors)
+    const newCar1 = await fetch(URL, options).then(handleHttpErrors) //ved kun at skrive "handleHttpErrors" svarer til "res => handleHttpErrors(res)"
+    document.querySelector("#added-car").innerText = JSON.stringify(newCar1)
 
 } catch (err) {
     console.log(err.message)
@@ -36,7 +37,6 @@ document.querySelector("#model").value = "";
 document.querySelector("#price-pr-day").value = "";
 document.querySelector("#best-discount").value = "";
 
-document.querySelector("#added-car").innerText = "Car added"
 
 
 }
